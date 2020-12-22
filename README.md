@@ -1,3 +1,3 @@
-# strider-kong
+# strider-humpback
 
-create kong api service and route
+deploy by humpback

@@ -1,6 +1,5 @@
 "use strict";
 
-const debug = require("debug")("strider-humpback:worker");
 const humpback = require("./lib/humpback-deploy");
 
 module.exports = {
@@ -14,18 +13,7 @@ module.exports = {
     return cb(null, {
       // any extra env variables. Will be available during all phases
       env: {},
-      // Listen for events on the internal job emitter.
-      //   Look at strider-runner-core for an
-      //   enumeration of the events. Emit plugin.[pluginid].myevent to
-      //   communicate things up to the browser or to the webapp.
-      listen: function (emitter, context) {
-        debug(context);
-        emitter.on("job.status.phase.done", function (id, data) {
-          const phase = data.phase;
-          debug(`the ${phase} phase has completed`);
-          return true;
-        });
-      },
+
       // For each phase that you want to deal with, provide either a
       // shell command [string] or [Object] (as demo'd below)
       // or a fn(context, done(err, didrun))
@@ -33,10 +21,10 @@ module.exports = {
       //function style (calling done is a MUST)
       deploy: function (context, done) {
         //this will show up in the terminal log as 'info'
-        debug(config);
+        // debug(config);
 
         humpback
-          .deploy(config.url, JSON.parse(config.group))
+          .deploy(config.url, JSON.parse(config.group), context)
           .then(() => {
             done(null, true);
           })

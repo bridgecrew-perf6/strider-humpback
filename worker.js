@@ -33,10 +33,10 @@ module.exports = {
       //function style (calling done is a MUST)
       deploy: function (context, done) {
         //this will show up in the terminal log as 'info'
-        debug(config.humpback);
+        debug(config);
 
         humpback
-          .deploy(config.humpback.url, JSON.parse(config.humpback.group))
+          .deploy(config.url, JSON.parse(config.group))
           .then(() => {
             done(null, true);
           })

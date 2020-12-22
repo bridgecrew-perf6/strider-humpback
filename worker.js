@@ -36,7 +36,7 @@ module.exports = {
         debug(config.humpback);
 
         humpback
-          .deploy(JSON.parse(config.humpback))
+          .deploy(config.humpback.url, JSON.parse(config.humpback.group))
           .then(() => {
             done(null, true);
           })

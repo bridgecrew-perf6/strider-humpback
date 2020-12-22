@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const app = window.app;
 const configDefaults = `{
@@ -23,17 +23,23 @@ const configDefaults = `{
 /*
  * $scope.configs, $scope.branch and $scope.pluginConfig, among others are available from the parent scope
  * */
-app.controller('HumpbackController', ['$scope', function ($scope) {
-  $scope.saving = false;
+app.controller("HumpbackController", [
+  "$scope",
+  function ($scope) {
+    $scope.saving = false;
 
-  $scope.$watch('configs[branch.name].humpback.config', function (value) {
-    $scope.config = value || configDefaults;
-  });
-
-  $scope.save = function () {
-    $scope.saving = true;
-    $scope.pluginConfig('humpback', $scope.config, function () {
-      $scope.saving = false;
+    $scope.$watch("configs[branch.name].humpback.config", function (value) {
+      $scope.config = {
+        ...value,
+        group: (value && value.group) || configDefaults,
+      };
     });
-  };
-}]);
+
+    $scope.save = function () {
+      $scope.saving = true;
+      $scope.pluginConfig("humpback", $scope.config, function () {
+        $scope.saving = false;
+      });
+    };
+  },
+]);

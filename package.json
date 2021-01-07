@@ -6,7 +6,7 @@
   "main": "webapp.js",
   "scripts": {
     "lint": "eslint *.js config lib",
-    "test": "npm run lint && istanbul cover node_modules/mocha/bin/_mocha --recursive test"
+    "test": "mocha --recursive test"
   },
   "repository": {
     "type": "git",

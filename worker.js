@@ -24,7 +24,7 @@ module.exports = {
         // debug(config);
 
         humpback
-          .deploy(config.url, JSON.parse(config.group), context)
+          .deploy(config.url, JSON.parse(config.group), config.addVersion, context)
           .then(() => {
             done(null, true);
           })

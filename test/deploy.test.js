@@ -11,7 +11,7 @@ describe("lib", function () {
     mockServer = http.createServer((request, response) => {
       response.write(
         JSON.stringify(request.url.includes('tags/list')?{
-          name: "xxxx", tags: ["latest", "v1.0", "v2.0"]
+          name: "xxxx", tags: ["latest", "v1.0", "v2.0", "v2.9", "v2.10", "v2.191"]
         }:{
           Data:{
             Containers:[]
